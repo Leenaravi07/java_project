@@ -1,0 +1,69 @@
+import java.util.Scanner;
+
+class Employee {
+    int id;
+    String name;
+    double performanceScore;
+    String rating;
+
+    // Method to calculate rating
+    void calculateRating() {
+        if (performanceScore >= 90) {
+            rating = "Excellent";
+        } else if (performanceScore >= 75) {
+            rating = "Very Good";
+        } else if (performanceScore >= 60) {
+            rating = "Good";
+        } else if (performanceScore >= 40) {
+            rating = "Average";
+        } else {
+            rating = "Poor";
+        }
+    }
+
+    void display() {
+        System.out.println("\n----- Employee Details -----");
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Performance Score: " + performanceScore);
+        System.out.println("Rating: " + rating);
+    }
+}
+
+public class EmployeeRatingSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of employees: ");
+        int n = sc.nextInt();
+
+        Employee[] emp = new Employee[n];
+
+        for (int i = 0; i < n; i++) {
+            emp[i] = new Employee();
+
+            System.out.println("\nEnter details for Employee " + (i + 1));
+
+            System.out.print("Enter ID: ");
+            emp[i].id = sc.nextInt();
+
+            sc.nextLine(); // consume newline
+
+            System.out.print("Enter Name: ");
+            emp[i].name = sc.nextLine();
+
+            System.out.print("Enter Performance Score (0-100): ");
+            emp[i].performanceScore = sc.nextDouble();
+
+            emp[i].calculateRating();
+        }
+
+        System.out.println("\n========== FINAL REPORT ==========");
+
+        for (int i = 0; i < n; i++) {
+            emp[i].display();
+        }
+
+        sc.close();
+    }
+}
